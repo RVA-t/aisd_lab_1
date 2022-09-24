@@ -215,6 +215,7 @@ public:
         Node* mainnode = new Node;
         Node* sublistnode = new Node;
         Node* temp = new Node;
+
         mainnode = mainlist->head;
         sublistnode = sublist->head;
 
