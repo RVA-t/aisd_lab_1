@@ -13,11 +13,11 @@ class List {
     int  length = 0;
 
 public:
-    List() { // конструктор 
+    List() { 
         head = NULL;
         tail = NULL;
     }
-    //~List();//деструктор 
+
     void AddHead(int data) {
         Node* temp = new Node;
         temp->next = temp->prev = NULL;
@@ -53,16 +53,19 @@ public:
         if (head != NULL) {
             head = head->next;
             head->prev = NULL;
+            length--;
         }
         else {
             cout << "список пуст";
         }
+        
     }
 
     void DelTail() {
         if (tail != NULL) {
             tail = tail->prev;
             tail->next = NULL;
+            length--;
         }
         else {
             cout << "список пуст";
@@ -122,7 +125,7 @@ public:
             getindex = getindex->next;
             i++;
         }
-        cout << getindex->data;
+        cout << getindex->data << endl;
     }
 
     void DelIndex(int  index) {
@@ -160,8 +163,9 @@ public:
     }
 
     void GetLength() {
-        cout << "Размер списка: " << length << endl;
+        cout << "Размер списка: " << length << endl << endl;
     }
+
     int Length() {
         return length;
     }
@@ -204,8 +208,9 @@ public:
         }
         cout << endl;
     }
-    bool Find(List* mainlist, List* sublist) {
-        if (mainlist == NULL and sublist == NULL) {
+
+    bool Find(List* sublist) {
+        if (this->Length() == 0 and sublist == NULL) {
             cout << "Списки пусты!";
             return 0;
         }
@@ -215,8 +220,7 @@ public:
         Node* mainnode = new Node;
         Node* sublistnode = new Node;
         Node* temp = new Node;
-
-        mainnode = mainlist->head;
+        mainnode = this->head;
         sublistnode = sublist->head;
 
 
@@ -229,14 +233,16 @@ public:
                 sublistnode = sublistnode->next;
                 if (sublistnode == NULL)
                 {
-                    cout << "есть подстрока";
+                    cout << "Строка содерджит подстроку и ее первое вхождение " << score << endl;
                     return 1;
                 }
             }
             sublistnode = sublist->head;
             mainnode = mainnode->next;
+            score++;
         }
-        cout << "В строке нет подстрок";
+        
+        cout << "В строке нет подстроки";
         return 0;
     }   
 };
@@ -249,42 +255,54 @@ int main()
 
     List* mainlist = new List; 
     List* sublist = new List;
+    cout << "Первый список: ";
     mainlist->AddTail(1);
-    mainlist->AddTail(3);
+    mainlist->AddTail(2);
     mainlist->AddTail(3);
     mainlist->AddTail(4);
     mainlist->AddTail(5);
     mainlist->AddTail(6);
-    mainlist->AddTail(7);
-    mainlist->AddTail(8);
-   /* main->DelHead();
-    main->DelTail();
-    main->Show();*/
-    sublist->AddTail(3);
+    mainlist->AddHead(7);
+    mainlist->AddHead(8);
+    mainlist->Show();
+
+    cout << endl << "Удаление головы списка: ";
+    mainlist->DelHead();
+    mainlist->Show();
+    cout << endl << "Удаление хвоста списка: ";
+    mainlist->DelTail();
+    mainlist->Show();
+    cout << endl << "Удаление элемента под индексом 4: ";
+    mainlist->DelIndex(4);
+    mainlist->Show();
+    cout << endl << "Вывод элемента под индексом 3: ";
+    mainlist->GetIndex(3);
+ 
+    cout << endl << "Замена элемента под индексом 1 на 3: ";
+    mainlist->ReplaceData(1, 3);
+    mainlist->Show();
+    
+    cout << endl;
+    mainlist->GetLength();
+
+
+
+
+    cout << "Второй список: ";
+    sublist->AddTail(2);
     sublist->AddTail(4);
     sublist->AddTail(5);
-    sublist->AddTail(6);
-
-    //main->AddHead(5);
-    //main->AddIndex(2, 9);
-    
-    //main->DelIndex(3);
-    //main->ReplaceData(3, 5);
     mainlist->Show();
+    
+    
+    cout << endl;
+    mainlist->Find(sublist);
+    cout << endl;
+    
+    mainlist->DelAll();
     mainlist->GetLength();
-    sublist->Show();
+    sublist->DelAll();
     sublist->GetLength();
-    
-    
-    
-    mainlist->Find(mainlist, sublist);
-   /* main->DelAll();
-    main->IfEmpty();*/
-
-
-
-
-
 }
 
 
