@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 
-
 using namespace std;
 
 struct Node {
@@ -247,8 +246,6 @@ public:
     }   
 };
 
-
-
 int main()
 {
     setlocale(LC_ALL, "RUSSIAN");
@@ -285,15 +282,11 @@ int main()
     cout << endl;
     mainlist->GetLength();
 
-
-
-
     cout << "Второй список: ";
     sublist->AddTail(2);
     sublist->AddTail(4);
     sublist->AddTail(5);
     mainlist->Show();
-    
     
     cout << endl;
     mainlist->Find(sublist);
