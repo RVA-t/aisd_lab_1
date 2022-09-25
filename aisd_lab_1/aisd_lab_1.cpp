@@ -208,7 +208,7 @@ public:
         cout << endl;
     }
 
-    bool Find(List* sublist) {
+    int Find(List* sublist) {
         if (this->Length() == 0 and sublist == NULL) {
             cout << "Списки пусты!";
             return 0;
@@ -232,7 +232,7 @@ public:
                 sublistnode = sublistnode->next;
                 if (sublistnode == NULL)
                 {
-                    cout << "Строка содерджит подстроку и ее первое вхождение " << score << endl;
+                    cout << "Первое вхождение второго списка в первый = " << score << endl;
                     return 1;
                 }
             }
@@ -275,7 +275,7 @@ int main()
     cout << endl << "Вывод элемента под индексом 3: ";
     mainlist->GetIndex(3);
  
-    cout << endl << "Замена элемента под индексом 1 на 3: ";
+    cout << endl << "Замена элемента под индексом 1 на значение 3: ";
     mainlist->ReplaceData(1, 3);
     mainlist->Show();
     
@@ -286,16 +286,21 @@ int main()
     sublist->AddTail(2);
     sublist->AddTail(4);
     sublist->AddTail(5);
-    mainlist->Show();
+    sublist->Show();
+    
     
     cout << endl;
     mainlist->Find(sublist);
     cout << endl;
     
+    cout << "Удаление двух списков: " << endl << endl;
     mainlist->DelAll();
     mainlist->GetLength();
+
     sublist->DelAll();
     sublist->GetLength();
+    sublist->IfEmpty();
+    
 }
 
 
